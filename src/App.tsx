@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AppBar, CssBaseline, Toolbar, Typography } from "@mui/material";
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Home from "./pages/HomePage";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <CssBaseline />
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        <div style={{ flexGrow: 1, padding: "1rem" }}>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6" component="div">
+                My App
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/RecordingSessions" element={<RecordingSession />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
